@@ -1,6 +1,40 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    laser = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . a . . . . . . . 
+        . . . . . . . a 8 . . . . . . . 
+        . . . . . . . 8 9 . . . . . . . 
+        . . . . . . . 9 7 . . . . . . . 
+        . . . . . . . 7 5 . . . . . . . 
+        . . . . . . . 5 4 . . . . . . . 
+        . . . . . . . 4 2 . . . . . . . 
+        . . . . . . . 2 . . . . . . . . 
+        `, mySprite, 0, -50)
+    laser.y = 100
+    music.pewPew.play()
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.ashes, 500)
+    sprite.destroy(effects.disintegrate, 500)
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.fire, 500)
+    scene.cameraShake(4, 500)
+    info.changeLifeBy(-1)
+})
 let asteroid: Sprite = null
+let laser: Sprite = null
+let mySprite: Sprite = null
 effects.starField.startScreenEffect()
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     . . . . . . . c d . . . . . . . 
     . . . . . . . c d . . . . . . . 
     . . . . . . . c d . . . . . . . 
@@ -41,4 +75,5 @@ game.onUpdateInterval(1000, function () {
         . . . . . . . . c b b c . . . . 
         `, 0, 50)
     asteroid.x = randint(0, scene.screenWidth())
+    asteroid.setKind(SpriteKind.Enemy)
 })
