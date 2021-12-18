@@ -23,7 +23,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
     otherSprite.destroy(effects.ashes, 500)
     sprite.destroy(effects.disintegrate, 500)
+    music.bigCrash.play()
     info.changeScoreBy(1)
+    if (info.score() == 5) {
+        game.showLongText("You can do it!", DialogLayout.Bottom)
+    } else if (info.score() == 10) {
+        game.showLongText("Keep going!", DialogLayout.Bottom)
+    } else if (info.score() == 15) {
+        game.showLongText("Almost there!", DialogLayout.Bottom)
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
@@ -33,6 +41,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let asteroid: Sprite = null
 let laser: Sprite = null
 let mySprite: Sprite = null
+game.showLongText("The future always starts with developers!", DialogLayout.Bottom)
+game.showLongText("Welcome to the future", DialogLayout.Bottom)
 effects.starField.startScreenEffect()
 mySprite = sprites.create(img`
     . . . . . . . c d . . . . . . . 
