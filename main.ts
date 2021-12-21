@@ -25,13 +25,6 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, oth
     sprite.destroy(effects.disintegrate, 500)
     music.bigCrash.play()
     info.changeScoreBy(1)
-    if (info.score() == 5) {
-        game.showLongText("You can do it!", DialogLayout.Bottom)
-    } else if (info.score() == 10) {
-        game.showLongText("Keep going!", DialogLayout.Bottom)
-    } else if (info.score() == 15) {
-        game.showLongText("Almost there!", DialogLayout.Bottom)
-    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
