@@ -35,7 +35,8 @@ let asteroid: Sprite = null
 let laser: Sprite = null
 let mySprite: Sprite = null
 game.showLongText("The future always starts with developers!", DialogLayout.Bottom)
-game.showLongText("Welcome to the future", DialogLayout.Bottom)
+game.showLongText("YOU can defeat any obstacle!", DialogLayout.Bottom)
+game.showLongText("YOU are the future!", DialogLayout.Bottom)
 effects.starField.startScreenEffect()
 mySprite = sprites.create(img`
     . . . . . . . c d . . . . . . . 
